@@ -69,6 +69,39 @@ class File(Node):
                     names.append(node.name)
         return names
 
+    def get_all_sub_directories_path(self, filter=None):
+        nodes = [node for node in LevelOrderIter(self)]
+        paths = []
+        for node in nodes:
+            if not node.is_file():
+                if filter is None:
+                    paths.append(node.get_path())
+                elif node.name.find(filter) != -1:
+                    paths.append(node.get_path())
+        return paths
+
+    def get_all_sub_directories_name(self, filter=None):
+        nodes = [node for node in LevelOrderIter(self)]
+        names = []
+        for node in nodes:
+            if not node.is_file():
+                if filter is None:
+                    names.append(node.name)
+                elif node.name.find(filter) != -1:
+                    names.append(node.name)
+        return names
+
+    def get_all_sub_directories(self, filter=None):
+        nodes = [node for node in LevelOrderIter(self)]
+        dirs = []
+        for node in nodes:
+            if not node.is_file():
+                if filter is None:
+                    dirs.append(node)
+                elif node.name.find(filter) != -1:
+                    dirs.append(node)
+        return dirs
+
     def get_all_files_from_here(self, filter=None):
         if not self.is_file():
             if filter is None:
