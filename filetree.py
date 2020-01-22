@@ -36,6 +36,15 @@ class File(Node):
     def get_name(self):
         return self.name
 
+    def get_formated_name(self, pattern='bash'):
+        copy = self.name
+        if pattern=='bash':
+            unsuported_characters = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '[', ']', '{', '}', '\'', '\"', '/', '|', ';', '<', '>', ' '] # white space was included            
+            for char in unsuported_characters:
+                copy = copy.replace(char, '_')
+        return copy
+
+
     def get_all_sub_files(self, filter=None):
         nodes = [node for node in LevelOrderIter(self)]
         paths = []
