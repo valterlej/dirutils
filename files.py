@@ -12,9 +12,14 @@ def get_dirs(root_dir, filter=None):
         filter = ''
     return [ os.path.join(root_dir, y) for y in os.listdir(root_dir) if os.path.isdir(os.path.join(root_dir, y)) and y.find(filter)!= -1]
 
-
 def get_file_name(file_path):
     if os.path.isfile(file_path):
         return file_path.split('/')[-1]
+    else:
+        return None
+
+def get_dir_name(dir_path):
+    if os.path.isdir(dir_path):
+        return dir_path.split('/')[-1]
     else:
         return None
